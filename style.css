@@ -1,270 +1,382 @@
 /* CSS files add styling rules to your content */
- 
+
 /* Define animation keyframes */
- @keyframes move-across {
+@keyframes move-across {
   0% {
-      transform: translateX(-100%);
+    transform: translateX(-100%);
   }
+
   100% {
-      transform: translateX(100%);
+    transform: translateX(100%);
   }
 }
 
 /* Style for the moving text */
 .moving-text {
   position: absolute;
-  white-space: nowrap; /* Prevents the text from wrapping */
-  top: 80%; /* Adjust vertical positioning */
+  white-space: nowrap;
+  /* Prevents the text from wrapping */
+  top: 80%;
+  /* Adjust vertical positioning */
   left: 0;
-  font-size: 24px; /* Adjust text size */
-  animation: move-across 17s linear infinite; /* Animation: duration, timing, and repeat */
-  width: 100%; /* Make sure it spans the screen horizontally */
+  font-size: 24px;
+  /* Adjust text size */
+  animation: move-across 17s linear infinite;
+  /* Animation: duration, timing, and repeat */
+  width: 100%;
+  /* Make sure it spans the screen horizontally */
 }
 
 /* Moving image */
 .moving-image {
   position: absolute;
-  top: 85%; /* Adjust to place the image below the text */
-  left: 0; /* Start position */
-  height: 100px; /* Image height */
-  animation: move-across 17s linear infinite; /* Animation for the image */
-  animation-delay: 1s; /* Adds a delay of 1 second */
-  width: 100%; /* Make sure it spans the screen horizontally */
+  top: 85%;
+  /* Adjust to place the image below the text */
+  left: 0;
+  /* Start position */
+  height: 100px;
+  /* Image height */
+  animation: move-across 17s linear infinite;
+  /* Animation for the image */
+  animation-delay: 1s;
+  /* Adds a delay of 1 second */
+  width: 100%;
+  /* Make sure it spans the screen horizontally */
 }
 
 body {
+  /* font-family: sans-serif; */
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100vw
+}
+
+p {
+  max-width: calc(min(500px, 80%));
+}
+
+/* body {
     font-family: monospace;
     margin: 2em;
     width: 100%;
     height: 100%;
+  } */
+
+.header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @media (max-width: 700px) {
+    position: relative;
+
+    padding-bottom: 40px;
+    left: 0px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
   }
-  
-  h1 {
-    color: #9b7db1;
-    font-size: 18pt;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  font-size: larger;
+
+  @media (max-width: 700px) {
+      flex-direction: row;
   }
-  .special-h2{
-    margin-top:0;
+}
+.header a {
+  color: rgb(94, 87, 112);
+  width: fit-content;
+  text-decoration: none;
+}
+button {
+  font-family: "Inconsolata", monospace;
+  background-color: rgb(94, 87, 112);
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  width: 100%;
+  /*   text-align: center; */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 2px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 12pt;
+  line-height: 18pt;
+}
+
+.left {
+  width: 15%;
+  padding: 1% 1% 1% 0;
+  display: inline-block;
+
+}
+
+.center {
+  width: 15%;
+  padding: 1%;
+  display: inline-block;
+}
+
+.right {
+  width: 60%;
+  padding: 1%;
+  display: inline-block;
+}
+
+.nav {
+  padding: 2%;
+  width: 26%;
+  height: 100%;
+  display: inline-block;
+
+}
+
+.content {
+  padding: 2%;
+  width: 50%;
+  display: inline-block;
+
+}
+
+ul {
+  padding: 0;
+  padding-inline: 0;
+  margin-inline: 0;
+  max-width: calc(min(500px, 80%) + 20);
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 70px;
+
+  @media (max-width: 500px) {
+      padding-bottom: 0px;
   }
-  
-  a {
-    color:#9e7da7;
-  }
-  
-  
-  h2 {
-    color: #606473;
-    font-size: 18pt;
-  /*   margin-top:0; */
-  }
-  
-  button {
+}
+
+li {
+  font-size: 12pt;
+  list-style-type: none;
+  padding-bottom: 1em;
+  color: #c9beb1;
+}
+
+li.bullet {
+  list-style-type: "- ";
+  margin: 1%;
+  padding: 0;
+}
+
+li a {
+  color: #b67dd7;
+  /*   text-decoration: none; */
+}
+
+li.bullet a {
+  color: #c9beb1;
+}
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+  /*   height: 400px; */
+  display: inline-block;
+  margin-bottom: 2%;
+}
+
+.full-width-box {
+  width: 100%;
+  margin-bottom: 2%;
+  display: inline-block;
+}
+
+img {
+  height: 400px;
+  display: inline-block;
+  margin-bottom: 2%;
+  margin-right: 2%;
+}
+
+body .gist .gist-file {
+  margin-bottom: 0;
+  border: 1px dashed #adb5bd;
+  border-radius: 0;
+}
+
+body .gist .gist-data {
+  border-bottom: none;
+  border-radius: 0;
+  background-color: #f1f3f5;
+}
+
+body .gist .blob-wrapper {
+  border-radius: 0;
+}
+
+body .gist .highlight {
+  background-color: transparent;
+  font-family: "Droid Sans Mono", monospace;
+  font-size: 14px;
+}
+
+body .gist .highlight td {
+  padding: 5px 15px !important;
+  line-height: 1;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+body .gist tr:first-child td {
+  padding-top: 15px !important;
+}
+
+body .gist tr:last-child td {
+  padding-bottom: 15px !important;
+}
+
+body .gist .blob-num {
+  color: #ced4da;
+  background-color: #495057;
+  pointer-events: none;
+}
+
+body .gist .gist-meta {
+  display: none;
+}
+
+.nav-link {
+  font-size: 18px;
+  line-height: 27px;
+  cursor: pointer;
+}
+
+.nav-link a,
+.nav-link a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#toggle {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
     font-family: "Inconsolata", monospace;
-    background-color: rgb(94, 87, 112);
-    border: none;
-    color: white;
-    padding: 10px 10px;
-    width: 100%;
-    /*   text-align: center; */
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 30px 2px;
-    cursor: pointer;
-  }
-  
-  p {
-    font-size: 12pt;
-    line-height: 18pt;
-  }
-  
-  .left {
-    width: 15%;
-    padding: 1% 1% 1% 0;
-    display: inline-block;
-
-  }
-  
-  .center {
-    width: 15%;
-    padding: 1%;
-    display: inline-block;
-  }
-  
-  .right {
-    width: 60%;
-    padding: 1%;
-    display: inline-block;
-  }
-  
-  .nav {
-    padding: 2%;
-    width: 26%;
-    height: 100%;
-    display: inline-block;
-
-  }
-  
-  .content {
-    padding: 2%;
-    width: 50%;
-    display: inline-block;
-
-  }
-  
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    font-size: 12pt;
-    list-style-type: none;
-    padding-bottom: 1em;
-    color:#c9beb1;
-  }
-  
-  li.bullet {
-    list-style-type: "- ";
     margin: 1%;
-    padding: 0;
+    width: 98%;
+    height: 100%;
   }
-  
-  li a {
-    color: #b67dd7;
-    /*   text-decoration: none; */
-  }
-  
-  li.bullet a {
-    color: #c9beb1;
-  }
-  
-  iframe {
-    margin: 0;
-    padding: 0;
-    border: none;
+
+  .nav {
     width: 100%;
-    /*   height: 400px; */
-    display: inline-block;
-    margin-bottom: 2%;
   }
-  
-  .full-width-box {
-    width: 100%;
-    margin-bottom: 2%;
-    display: inline-block;
-  }
-  
-  img {
-    height: 400px;
-    display: inline-block;
-    margin-bottom: 2%;
-    margin-right: 2%;
-  }
-  
-  body .gist .gist-file {
-    margin-bottom: 0;
-    border: 1px dashed #adb5bd;
-    border-radius: 0;
-  }
-  
-  body .gist .gist-data {
-    border-bottom: none;
-    border-radius: 0;
-    background-color: #f1f3f5;
-  }
-  
-  body .gist .blob-wrapper {
-    border-radius: 0;
-  }
-  
-  body .gist .highlight {
-    background-color: transparent;
-    font-family: "Droid Sans Mono", monospace;
-    font-size: 14px;
-  }
-  
-  body .gist .highlight td {
-    padding: 5px 15px !important;
-    line-height: 1;
-    font-family: inherit;
-    font-size: inherit;
-  }
-  
-  body .gist tr:first-child td {
-    padding-top: 15px !important;
-  }
-  
-  body .gist tr:last-child td {
-    padding-bottom: 15px !important;
-  }
-  
-  body .gist .blob-num {
-    color: #ced4da;
-    background-color: #495057;
-    pointer-events: none;
-  }
-  
-  body .gist .gist-meta {
-    display: none;
-  }
-  
-  .nav-link {
-    font-size: 18px;
-    line-height: 27px;
-    cursor: pointer;
-  }
-  .nav-link a,
-  .nav-link a:visited {
-    color: black;
-    text-decoration: none;
-  }
-  
-  #toggle {
-    display: none;
-  }
-  
-  @media only screen and (max-width: 600px) {
-    body {
-      font-family: "Inconsolata", monospace;
-      margin: 1%;
-      width: 98%;
-      height: 100%;
-    }
-    .nav {
-      width: 100%;
-    }
-    .content {
-      width: 100%;
-      float: left;
-    }
-  
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-  
-  .myBox {
-  
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  
-    border: 1px solid black;
-  }
-  
-  .fullwidth {
+
+  .content {
     width: 100%;
     float: left;
   }
-  
-  .nav{
-    display: none;
+
+  img {
+    width: 100%;
+    height: auto;
   }
+}
+
+.myBox {
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  border: 1px solid black;
+}
+
+.fullwidth {
+  width: 100%;
+  float: left;
+}
+
+.nav {
+  display: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  z-index: -1;
+
+  gap: 10px;
+
+  @media (max-width: 700px) {
+    position: relative;
+
+    padding-top: 60px;
+    left: 0px;
+    right: 0px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+  }
+}
+
+footer .left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+footer .right {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 20px;
+}
