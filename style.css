@@ -44,6 +44,72 @@
   /* Make sure it spans the screen horizontally */
 }
 
+.sticker-container-1 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.sticker-container-1 img {
+  width: 100px;
+  height: auto;
+}
+
+.sticker-container-2 {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+}
+
+.sticker-container-2 img {
+  width: 100px;
+  height: auto;
+}
+
+.sticker-container-3 {
+  position: absolute;
+  top: 600px;
+  right: 30px;
+}
+
+.sticker-container-3 img {
+  width: 100px;
+  height: auto;
+}
+
+.sticker-container-4 {
+  position: absolute;
+  top: 300px;
+  left: 100px;
+}
+
+.sticker-container-4 img {
+  width: 100px;
+  height: auto;
+}
+
+.sticker-container-5 {
+  position: absolute;
+  top: 300px;
+  right: 50px;
+}
+
+.sticker-container-5 img {
+  width: 100px;
+  height: auto;
+}
+
+.minecraft-container{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.minecraft-container img {
+  width: 200px;
+  height: auto;
+}
+
 body {
   /* font-family: sans-serif; */
   background-color: #ffffff;
@@ -58,13 +124,6 @@ body {
 p {
   max-width: calc(min(500px, 80%));
 }
-
-/* body {
-    font-family: monospace;
-    margin: 2em;
-    width: 100%;
-    height: 100%;
-  } */
 
 .header {
   position: fixed;
@@ -338,45 +397,4 @@ body .gist .gist-meta {
 
 .nav {
   display: none;
-}
-
-footer {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  z-index: -1;
-
-  gap: 10px;
-
-  @media (max-width: 700px) {
-    position: relative;
-
-    padding-top: 60px;
-    left: 0px;
-    right: 0px;
-
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-  }
-}
-
-footer .left {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-footer .right {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  gap: 20px;
 }
