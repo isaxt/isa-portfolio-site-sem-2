@@ -110,6 +110,28 @@
   height: auto;
 }
 
+.poem-container-1 {
+  position: absolute;
+  top: 500px;
+  right: 50px;
+}
+
+.poem-container-1 img {
+  width: 200px;
+  height: auto;
+}
+
+.poem-container-2 {
+  position: absolute;
+  top: 500px;
+  left: 20px;
+}
+
+.poem-container-2 img {
+  width: 250px;
+  height: auto;
+}
+
 body {
   /* font-family: sans-serif; */
   background-color: #ffffff;
