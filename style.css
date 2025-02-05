@@ -107,6 +107,28 @@
   height: auto;
 }
 
+.index-container{
+  position: absolute;
+  top: 350px;
+  right: 20px;
+}
+
+.index-container img {
+  width: 150px;
+  height: auto;
+}
+
+.index-container-2{
+  position: absolute;
+  top: 350px;
+  right: 200px;
+}
+
+.index-container-2 img {
+  width: 150px;
+  height: auto;
+}
+
 .poem-container-1 {
   position: absolute;
   top: 500px;
