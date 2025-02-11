@@ -4,6 +4,9 @@ const ourWord = "MOO";
 
 let pointArray;
 
+let size=6;
+
+
 function preload() {
     myFont = loadFont("./comicSans.ttf");
 }
@@ -18,9 +21,17 @@ function draw() {
     pointArray = myFont.textToPoints(ourWord, 20, 150, 135, {sampleFactor: 0.2 });
     
      //5- circle and square alternating colors
-     for (let i = 0; i < pointArray.length; i++) {
+     for (let i = 2; i < pointArray.length; i++) {
+        if(i%2 == 1){
 
-        fill(255, 0, 0)
-        circle(pointArray[i].x, pointArray[i].y, 10);
+            square(pointArray[i].x, pointArray[i].y, size);
+            fill(255, 0, 0);
+
+        } else{
+        
+            circle(pointArray[i].x, pointArray[i].y, size);
+            fill(0,255,0);
+        }
+        
     }
 }

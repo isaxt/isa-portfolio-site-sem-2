@@ -19,8 +19,13 @@ function draw() {
     
      //4- half-half and bottom heavy
      for (let i = 0; i < pointArray.length; i++) {
+        if (pointArray[i].x>200){
+            fill(255, 0, 0)
+        } else{
+            fill(0,255,0);
+        }
+        size = map(pointArray[i].y, 0, 200, 0, 15);
 
-        fill(255, 0, 0)
-        circle(pointArray[i].x, pointArray[i].y, 10);
+        circle(pointArray[i].x, pointArray[i].y, size);
     }
 }
