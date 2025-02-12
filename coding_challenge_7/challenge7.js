@@ -15,7 +15,7 @@ function setup() {
     createCanvas(400, 200).parent("my-sketch");
     background(0);
     noStroke();
-    fill(255, 0, 0);
+    fill(144, 171, 132);
 
     pointArray = myFont.textToPoints(ourWord, 20, 150, 135, { sampleFactor: 0.2 });
 

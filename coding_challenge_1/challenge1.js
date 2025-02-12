@@ -10,8 +10,9 @@ function preload() {
 
 function setup() {
     createCanvas(400, 200).parent("my-sketch");
-    background(0, 0, 0);
-    fill(255, 0, 0)
+    background(188, 235, 207);
+    noStroke();
+    fill(161, 132, 181);
 
 }
 
@@ -21,6 +22,6 @@ function draw() {
      //1- text
      for (let i = 0; i < pointArray.length; i++) {
 
-        circle(pointArray[i].x, pointArray[i].y, 10);
+        circle(pointArray[i].x, pointArray[i].y, 5);
     }
 }

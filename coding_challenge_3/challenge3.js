@@ -10,7 +10,8 @@ function preload() {
 
 function setup() {
     createCanvas(400, 200).parent("my-sketch");
-    background(0, 0, 0);
+    background(245, 191, 207);
+    noStroke();
 
 }
 
@@ -20,11 +21,11 @@ function draw() {
      //3- half-half color
      for (let i = 0; i < pointArray.length; i++) {
         if (pointArray[i].x>200){
-            fill(255, 0, 0)
+            fill(222, 137, 18)
         } else{
-            fill(0,255,0);
+            fill(130, 108, 217);
         }
 
-        circle(pointArray[i].x, pointArray[i].y, 10);
+        circle(pointArray[i].x, pointArray[i].y, 5);
     }
 }

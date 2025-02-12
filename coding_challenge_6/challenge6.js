@@ -11,18 +11,20 @@ function preload() {
 function setup() {
     createCanvas(400, 200).parent("my-sketch");
     background(0);
-    fill(255, 0, 0);
+    noStroke();
+    fill(233, 192, 237);
 }
 
 function draw() {
-    
+
+    background(0);
     pointArray = myFont.textToPoints(ourWord, 20, 150, 135, { sampleFactor: 0.2 });
 
     // height of sine wave
     let amplitude = 7; 
 
     // speed of wave-- higher is faster + lower is slower
-    let frequency = 0.09; 
+    let frequency = 0.08; 
 
     //frameCount* frequency--> the speed of the wave
     for (let i = 0; i < pointArray.length; i++) {

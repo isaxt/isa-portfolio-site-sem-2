@@ -13,12 +13,15 @@ function preload() {
 
 function setup() {
     createCanvas(400, 200).parent("my-sketch");
-    background(0, 0, 0);
+    background(203, 227, 245);
+    noStroke();
+
+    rectMode(CENTER);
 
 }
 
 function draw() {
-    pointArray = myFont.textToPoints(ourWord, 20, 150, 135, {sampleFactor: 0.2 });
+    pointArray = myFont.textToPoints(ourWord, 20, 150, 135, {sampleFactor: 0.15 });
     
      //5- circle and square alternating colors
      for (let i = 2; i < pointArray.length; i++) {
@@ -30,7 +33,7 @@ function draw() {
         } else{
         
             circle(pointArray[i].x, pointArray[i].y, size);
-            fill(0,255,0);
+            fill(91, 93, 94);
         }
         
     }
