@@ -21,10 +21,16 @@ function setup() {
 }
 
 function draw() {
+    background(203, 227, 245);
+
     pointArray = myFont.textToPoints(ourWord, 20, 150, 135, {sampleFactor: 0.15 });
+
+    console.log(pointArray.length);
     
      //5- circle and square alternating colors
-     for (let i = 2; i < pointArray.length; i++) {
+     //why does it flicker-->not always consistent
+     //might process the font file differently
+     for (let i = 0; i < pointArray.length; i++) {
         if(i%2 == 1){
 
             square(pointArray[i].x, pointArray[i].y, size);
