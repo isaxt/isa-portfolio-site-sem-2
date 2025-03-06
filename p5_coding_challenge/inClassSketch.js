@@ -1,50 +1,183 @@
+/*
+**NOTE TO SELF: use capture callback function to set capture size (required) and initialize tracker
+Lets…
+Use clmtrackr to:
+Track our face
+Draw facial features with p5.js shape primitives
+Make the shape that represents our mouth grow or shrink based on how open our mouth is.
+
+*/
+
+/*
+Add the “nose-drawing” functionality to our face sketch.
+Add a “clear” button to clear our drawing.
+*/
+
 let capture;
+let tracker;
+let positions;
+let hasInitialized = false;
+
+let surprisedFace;
+
+// let noseDrawingLayer;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  capture = createCapture(VIDEO,{ flipped:true });
-  capture.hide();
-  
-  noStroke();
 
-  loadPixels();
+  createCanvas(windowWidth, windowHeight);
+  capture = createCapture(VIDEO, {flipped: true}, onCaptureCreated);
+  //capture.hide();
+  tracker = new clm.tracker();
+  tracker.init();
+
+  surprisedFace = createGraphics (width, height);
+
+  // noseDrawingLayer = createGraphics(width, height);
+
+}
+
+function onCaptureCreated() {
+
+  capture.size(capture.width, capture.height);
+  tracker.start(capture.elt);
+  hasInitialized = true;
 }
 
 function draw() {
-  background(0);
+  if (!hasInitialized) return;
+ // background(0);
+  positions = tracker.getCurrentPosition();
 
+   image(capture, 0, 0);
 
-  capture.loadPixels();
-  
-  // change the stepSize for higher resolution
-  drawPoints(capture.width, capture.height, 10);
+  if (!positions) return;
+
+  // fill(0);
+  // noStroke();
+  // surprisedFace.noStroke();
+
+  //drawNose();
+  // drawLeftEye();
+  // drawRightEye();
+   drawMouth();
+
+  //text("😱", 0, 0);
 }
 
-//make sure that the pixels have been loaded
-function getColorFromPixelArray(pixelArray, x, y, w){
-  let index = (x+y*w)*4;
-  const r= pixelArray[index];
-  const g= pixelArray[index+1];
-  const b= pixelArray[index+2];
-  const a= pixelArray[index+3];
+// function keyPressed() {
+//   if (key === " ") {
+//     clearNoseGraphic();
+//   }
+// }
 
-  return color (r,g,b,a);
-}
+// function clearNoseGraphic() {
+//   noseDrawingLayer.clear();
+// }
 
-// draws each circle by using get() on the capture
-function drawPoints(w, h, stepSize) {
-  
-  for (let x = 0; x < w; x += stepSize) {
-    for (let y = 0; y < h; y += stepSize) {
+//text(str, x, y, [maxWidth], [maxHeight];
+//😱
 
-     let col= getColorFromPixelArray(capture.pixels, x,y, capture.width); // returning--> not assigned to anything
 
-      fill(col);
+function drawMouth() {
+  const topXPos = capture.width - positions[60][0];
+  const topYPos = positions[60][1];
 
-      circle(x, y, stepSize);
+  const botXPos = capture.width - positions[57][0];
+  const botYPos = positions[57][1];
+
+  const distance = dist(topXPos, topYPos, botXPos, botYPos);
+
+  const mappedSize = map(distance, 0, 16, 5, 40, true);
+
+  console.log(floor(distance));
+
+  // if (distance >= 5){
+  //   textSize(300);
+  //   text("😱", botXPos, botYPos-10);
+  //  textAlign(CENTER, CENTER);
+  // }
+
+  //hat
+  if (distance >= 5){
+      textSize(200);
+      text("🎩", topXPos, topYPos-200);
+     textAlign(CENTER, CENTER);
     }
-  }
+
+  //🎩
 }
+
+// function drawNose() {
+//   const xPos = capture.width - positions[62][0];
+//   const yPos = positions[62][1];
+
+//   circle(xPos, yPos, 40);
+//   noseDrawingLayer.circle(xPos, yPos, 40);
+// }
+
+// function drawLeftEye() {
+//   const xPos = capture.width - positions[27][0];
+//   const yPos = positions[27][1];
+
+//   circle(xPos, yPos, 20);
+// }
+
+// function drawRightEye() {
+//   const xPos = capture.width - positions[32][0];
+//   const yPos = positions[32][1];
+
+//   circle(xPos, yPos, 20);
+// }
+
+
+//PIXEL THINGS
+// let capture;
+
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   capture = createCapture(VIDEO,{ flipped:true });
+//   capture.hide();
+  
+//   noStroke();
+
+//   loadPixels();
+// }
+
+// function draw() {
+//   background(0);
+
+
+//   capture.loadPixels();
+  
+//   // change the stepSize for higher resolution
+//   drawPoints(capture.width, capture.height, 10);
+// }
+
+// //make sure that the pixels have been loaded
+// function getColorFromPixelArray(pixelArray, x, y, w){
+//   let index = (x+y*w)*4;
+//   const r= pixelArray[index];
+//   const g= pixelArray[index+1];
+//   const b= pixelArray[index+2];
+//   const a= pixelArray[index+3];
+
+//   return color (r,g,b,a);
+// }
+
+// // draws each circle by using get() on the capture
+// function drawPoints(w, h, stepSize) {
+  
+//   for (let x = 0; x < w; x += stepSize) {
+//     for (let y = 0; y < h; y += stepSize) {
+
+//      let col= getColorFromPixelArray(capture.pixels, x,y, capture.width); // returning--> not assigned to anything
+
+//       fill(col);
+
+//       circle(x, y, stepSize);
+//     }
+//   }
+// }
 
 /*
 for optimization consider:
