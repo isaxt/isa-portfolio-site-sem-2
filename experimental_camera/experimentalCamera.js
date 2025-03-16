@@ -1,4 +1,3 @@
-//PIXEL THINGS
 let capture;
 
 function setup() {
@@ -14,7 +13,6 @@ function setup() {
 function draw() {
   background(0);
 
-
   capture.loadPixels();
   
   // change the stepSize for higher resolution
@@ -24,10 +22,22 @@ function draw() {
 //make sure that the pixels have been loaded
 function getColorFromPixelArray(pixelArray, x, y, w){
   let index = (x+y*w)*4;
-  const r= pixelArray[index];
-  const g= pixelArray[index+1];
-  const b= pixelArray[index+2];
-  const a= pixelArray[index+3];
+
+  let r= pixelArray[index] ;
+  let g= pixelArray[index+1] ;
+  let b= pixelArray[index+2];
+  let a= pixelArray[index+3];
+
+  // rgb tint color
+  let tintR = 39;
+  let tintG = 64;
+  let tintB = 32;
+
+  // blend the original pixel color with the tint color
+  let mixRatio = 0.6; // adjust  for stronger or weaker tint
+  r = r * (1 - mixRatio) + tintR * mixRatio;
+  g = g * (1 - mixRatio) + tintG * mixRatio;
+  b = b * (1 - mixRatio) + tintB * mixRatio;
 
   return color (r,g,b,a);
 }
@@ -42,12 +52,14 @@ function drawPoints(w, h, stepSize) {
 
       fill(col);
 
-      circle(x, y, stepSize);
+      //pixels!
+      rect(x, y, stepSize);
     }
   }
 }
 
 /*
+Notes from class
 for optimization consider:
  - loading pixels before drawing points
  - passing in specific pixelArrays to the drawPoints to support any kind of pixel array, not bound to "capture"
