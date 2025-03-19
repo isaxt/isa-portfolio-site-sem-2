@@ -2,21 +2,35 @@
 
 let capture;
 let clusterPositions = [];
+let videoX, videoY; // To center the video
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+ 
   capture = createCapture(VIDEO,{ flipped:true });
+  capture.size(640, 480); // Set a fixed size for the video
   capture.hide();
   
   noStroke();
 
   loadPixels();
 
+  // Position the video in the center
+  videoX = (width - capture.width) / 2;
+  videoY = (height - capture.height) / 2;
+
   // generate 15 random clusters 
   generateClusters(15); 
 
-  // gegenerate the clusters every 5 seconds (5000ms)
-  setInterval(() => generateClusters(15), 5000);
+  generateRedClusters(10); // Generate red clusters
+
+  // generate the clusters every 5 seconds (5000ms)
+  setInterval(() => {
+    
+    generateClusters(15);
+    generateRedClusters(10);
+   }, 5000);
+
 }
 
 function draw() {
@@ -29,20 +43,37 @@ function draw() {
 
   // draw the white clusters
   drawClusters(); 
+  drawRedClusters(); // Red clusters
 }
 
 // generate random cluster positions + sizes
 function generateClusters(numClusters) {
   clusterPositions = [];
   for (let i = 0; i < numClusters; i++) {
-    let clusterX = random(width);
-    let clusterY = random(height);
+
+    //within the video area
+    let clusterX = random(videoX, videoX + capture.width);
+    let clusterY = random(videoY, videoY + capture.height);
 
     // each cluster--> different size
     let clusterSize = random(5, 50); 
     clusterPositions.push({ x: clusterX, y: clusterY, size: clusterSize });
   }
 }
+
+// Generate red clusters
+function generateRedClusters(numClusters) {
+  redClusterPositions = [];
+  for (let i = 0; i < numClusters; i++) {
+
+    //within the video area
+    let clusterX = random(videoX, videoX + capture.width);
+    let clusterY = random(videoY, videoY + capture.height);
+    let clusterSize = random(5, 50);
+    redClusterPositions.push({ x: clusterX, y: clusterY, size: clusterSize });
+  }
+}
+
 
 // draws white clusters pixels with varying sizes
 function drawClusters() {
@@ -62,6 +93,26 @@ function drawClusters() {
   }
 }
 
+// Draw red clusters
+function drawRedClusters() {
+  fill(255, 0, 0);
+  drawAbstractClusters(redClusterPositions);
+}
+
+
+// Draw clusters with scattered dots
+function drawAbstractClusters(clusterArray) {
+  for (let i = 0; i < clusterArray.length; i++) {
+    let { x, y, size } = clusterArray[i];
+    let numDots = floor(size * 2);
+    for (let j = 0; j < numDots; j++) {
+      let offsetX = random(-size, size);
+      let offsetY = random(-size, size);
+      let dotSize = random(2, size / 4);
+      rect(x + offsetX, y + offsetY, dotSize);
+    }
+  }
+}
 //make sure that the pixels have been loaded
 function getColorFromPixelArray(pixelArray, x, y, w){
   let index = (x+y*w)*4;
@@ -119,7 +170,7 @@ function drawPoints(w, h, stepSize) {
       fill(col);
 
       //pixels!
-      rect(x, y, stepSize);
+      rect(videoX + x, videoY + y, stepSize);
     }
   }
 }
