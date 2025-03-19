@@ -39,9 +39,35 @@ function draw() {
   // change the stepSize for higher resolution
   drawPoints(capture.width, capture.height, 10);
 
+  // Draw semi-transparent green overlay
+  drawGreenOverlay();
+
   // draw the white clusters
   drawClusters(); 
   drawRedClusters(); // red clusters
+
+  // draw white borders around the capture area
+  drawBorders();
+}
+
+// white rectangle borders
+function drawBorders() {
+  fill(255); // white color for the border-- matches background 
+  noStroke();
+
+  let thickness = 50; // border thickness-- thicker is better
+
+  // top border
+  rect(videoX - thickness, videoY - thickness, capture.width + 2 * thickness, thickness);
+  
+  // bottom border
+  rect(videoX - thickness, videoY + capture.height, capture.width + 2 * thickness, thickness);
+  
+  // left border
+  rect(videoX - thickness, videoY, thickness, capture.height);
+  
+  // right border
+  rect(videoX + capture.width, videoY, thickness, capture.height);
 }
 
 // generate random cluster positions + sizes
@@ -171,6 +197,12 @@ function drawPoints(w, h, stepSize) {
       rect(videoX + x, videoY + y, stepSize);
     }
   }
+}
+
+function drawGreenOverlay() {
+  fill(0, 128, 0, 30); // Green color with transparency (RGBA: A=100 for transparency)
+  noStroke();
+  rect(videoX, videoY, capture.width, capture.height);
 }
 
 /*
