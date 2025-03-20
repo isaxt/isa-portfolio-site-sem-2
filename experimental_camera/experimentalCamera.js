@@ -19,16 +19,16 @@ function setup() {
   videoX = (width - capture.width) / 2;
   videoY = (height - capture.height) / 2;
 
+  //set interval to randomize the noise speed
+
+  noiseSeed[10];
+
+// how mahy mili secs it changes
+  setInterval(
+    () => {
+      noiseSeed(floor(random(0,100)));
+    }, 500);
   
-  generateClusters(10); // generate 10 white random clusters 
-  generateRedClusters(3); // generate red clusters
-
-  // generate the clusters every 5 seconds (5000ms)
-  setInterval(() => {
-    generateClusters(10);
-    generateRedClusters(3);
-   }, 5000);
-
 }
 
 function draw() {
@@ -39,86 +39,14 @@ function draw() {
   // change the stepSize for higher resolution
   drawPoints(capture.width, capture.height, 10);
 
-  // Draw semi-transparent green overlay
-  drawGreenOverlay();
-
-  // draw the white clusters
-  drawClusters(); 
-  drawRedClusters(); // red clusters
 
   // draw white borders around the capture area
   drawBorders();
 }
 
-
-// generate random cluster positions + sizes
-function generateClusters(numClusters) {
-  clusterPositions = [];
-  for (let i = 0; i < numClusters; i++) {
-
-    //within the video area
-    let clusterX = random(videoX, videoX + capture.width);
-    let clusterY = random(videoY, videoY + capture.height);
-
-    // each cluster--> different size
-    let clusterSize = random(5, 50); 
-    clusterPositions.push({ x: clusterX, y: clusterY, size: clusterSize });
-  }
-}
-
-// generate red clusters
-function generateRedClusters(numClusters) {
-  redClusterPositions = [];
-  for (let i = 0; i < numClusters; i++) {
-
-    //within the video area
-    let clusterX = random(videoX, videoX + capture.width);
-    let clusterY = random(videoY, videoY + capture.height);
-    let clusterSize = random(5, 50);
-    redClusterPositions.push({ x: clusterX, y: clusterY, size: clusterSize });
-  }
-}
-
-
-// draws white clusters pixels with varying sizes
-function drawClusters() {
-  fill(255); // White color for clusters
-  for (let i = 0; i < clusterPositions.length; i++) {
-    let { x, y, size } = clusterPositions[i];
-    
-    // more dots for bigger clusters
-    let numDots = floor(size * 2); 
-
-    for (let j = 0; j < numDots; j++) { // scattered dots per cluster
-      let offsetX = random(-size, size);
-      let offsetY = random(-size, size);
-      let dotSize = random(2, size / 4); // dots scale with cluster size
-      rect(x + offsetX, y + offsetY, dotSize);
-    }
-  }
-}
-
-// draw red clusters
-function drawRedClusters() {
-  fill(255, 0, 0);
-  drawAbstractClusters(redClusterPositions);
-}
-
-
-// draw clusters with scattered dots
-function drawAbstractClusters(clusterArray) {
-  for (let i = 0; i < clusterArray.length; i++) {
-    let { x, y, size } = clusterArray[i];
-    let numDots = floor(size * 2);
-    for (let j = 0; j < numDots; j++) {
-      let offsetX = random(-size, size);
-      let offsetY = random(-size, size);
-      let dotSize = random(2, size / 4);
-      rect(x + offsetX, y + offsetY, dotSize);
-    }
-  }
-}
 //make sure that the pixels have been loaded
+
+
 function getColorFromPixelArray(pixelArray, x, y, w){
   let index = (x+y*w)*4;
 
@@ -127,12 +55,16 @@ function getColorFromPixelArray(pixelArray, x, y, w){
   let b= pixelArray[index+2];
   let a= pixelArray[index+3];
 
+  return [r,g,b,a];
+
   //uniform green tint over the camera
   let baseTintR = 39;
   let baseTintG = 64;
   let baseTintB = 32;
   let baseMixRatio = 0.6; // controls how strong the base tint is
 
+
+  // add to the green channel so the tint isn't drawn over
   // blend the original pixel color with the tint color
   r = r * (1 - baseMixRatio) + baseTintR * baseMixRatio;
   g = g * (1 - baseMixRatio) + baseTintG * baseMixRatio;
@@ -165,6 +97,11 @@ function getColorFromPixelArray(pixelArray, x, y, w){
 }
 
 // draws each rect by using get() on the capture
+// from the color-- different fucntions that does different functions that changes it
+// bright enough-- white-- even higher-- being red
+// applying this effects separately
+// apply a filter over everything
+
 function drawPoints(w, h, stepSize) {
   
   for (let x = 0; x < w; x += stepSize) {
@@ -172,6 +109,8 @@ function drawPoints(w, h, stepSize) {
 
      let col= getColorFromPixelArray(capture.pixels, x,y, capture.width); // returning--> not assigned to anything
 
+
+     col = processColor(col, x, y);
       fill(col);
 
       //pixels!
@@ -180,11 +119,33 @@ function drawPoints(w, h, stepSize) {
   }
 }
 
-function drawGreenOverlay() {
-  fill(0, 128, 0, 30); // Green color with transparency (RGBA: A=100 for transparency)
-  noStroke();
-  rect(videoX, videoY, capture.width, capture.height);
+//3/20 help from Luca
+// all in here
+function processColor(col, x, y){
+  //adding the r, g,b,a --> if the sum is bigger than 800
+  let sumOfColors = col[0] + col[1] + col[2] + col[3];
+  let threshold = 760;
+
+  if (sumOfColors>threshold){ // is the pixel in the white zone?
+    // half will be right half will be false
+    if (noise(x,y)>0.5 && sumOfColors > threshold + 50) {
+      return [255, 0, 0, 255];
+    }
+    
+    //white
+    return [255, 255, 255, 255];
+  } else{
+    col[1]+=50 // making it more green
+  }
+  //return the original values
+  return col;
 }
+
+// function drawGreenOverlay() {
+//   fill(0, 128, 0, 30); // Green color with transparency (RGBA: A=100 for transparency)
+//   noStroke();
+//   rect(videoX, videoY, capture.width, capture.height);
+// }
 
 // white rectangle borders
 function drawBorders() {
