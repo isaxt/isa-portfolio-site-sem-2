@@ -1,3 +1,60 @@
+// VECTORS
+//think of vectors as a set of three numbers rather than just a direction
+//velocity = speed and direction -> calling mag() == length of vector, being able to check its length in respective
+
+/*
+-Create an object that has its position and velocity stored in vectors.
+-Give it a starting velocity.
+-Apply gravity with vectors!
+-For fun – try making gravity go in another direction.
+-MAYBE: make the background change colors as the object speeds up.
+
+*/
+
+
+let myVectorBall;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+  // myVectorBall = new vectorBall(100, 100, 1, -1);
+  myVectorBall = new vectorBall(100, 100, 10, -10);
+  myVectorBall = new vectorBall(500, 500, 10, -10);
+
+}
+
+function draw() {
+  background(myVectorBall.velocity.mag()*10);
+
+  myVectorBall.update();
+  myVectorBall.display();
+}
+
+class vectorBall{
+  constructor(x, y, velX, velY){
+    this.position = new p5.Vector(x,y);
+    this.velocity = new p5.Vector(velX, velY);
+
+    // this.gravity = new p5.Vector(0, 0.5);
+    this.gravity = new p5.Vector(-0.3, 0.5); //like wind
+    this.gravity = new p5.Vector(0.3, 0.5); //going up
+
+  }
+
+  update(){ //data management
+    //apply gravity to velocity
+    this.velocity.add(this.gravity);
+    
+    
+    this.position.add(this.velocity); //every frame we're adding wahtever the velocity is to the position -> moving the ball
+
+  }
+
+  display(){ //view
+    circle(this.position.x, this.position.y, 30);
+
+  }
+}
 /*
 **NOTE TO SELF: use capture callback function to set capture size (required) and initialize tracker
 Lets…
@@ -13,99 +70,99 @@ Add the “nose-drawing” functionality to our face sketch.
 Add a “clear” button to clear our drawing.
 */
 
-let capture;
-let tracker;
-let positions;
-let hasInitialized = false;
+// let capture;
+// let tracker;
+// let positions;
+// let hasInitialized = false;
 
-let surprisedFace;
+// let surprisedFace;
 
-// let noseDrawingLayer;
+// // let noseDrawingLayer;
 
-function setup() {
+// function setup() {
 
-  createCanvas(windowWidth, windowHeight);
-  capture = createCapture(VIDEO, {flipped: true}, onCaptureCreated);
-  //capture.hide();
-  tracker = new clm.tracker();
-  tracker.init();
+//   createCanvas(windowWidth, windowHeight);
+//   capture = createCapture(VIDEO, {flipped: true}, onCaptureCreated);
+//   //capture.hide();
+//   tracker = new clm.tracker();
+//   tracker.init();
 
-  surprisedFace = createGraphics (width, height);
+//   surprisedFace = createGraphics (width, height);
 
-  // noseDrawingLayer = createGraphics(width, height);
+//   // noseDrawingLayer = createGraphics(width, height);
 
-}
-
-function onCaptureCreated() {
-
-  capture.size(capture.width, capture.height);
-  tracker.start(capture.elt);
-  hasInitialized = true;
-}
-
-function draw() {
-  if (!hasInitialized) return;
- // background(0);
-  positions = tracker.getCurrentPosition();
-
-   image(capture, 0, 0);
-
-  if (!positions) return;
-
-  // fill(0);
-  // noStroke();
-  // surprisedFace.noStroke();
-
-  //drawNose();
-  // drawLeftEye();
-  // drawRightEye();
-   drawMouth();
-
-  //text("😱", 0, 0);
-}
-
-// function keyPressed() {
-//   if (key === " ") {
-//     clearNoseGraphic();
-//   }
 // }
 
-// function clearNoseGraphic() {
-//   noseDrawingLayer.clear();
+// function onCaptureCreated() {
+
+//   capture.size(capture.width, capture.height);
+//   tracker.start(capture.elt);
+//   hasInitialized = true;
 // }
 
-//text(str, x, y, [maxWidth], [maxHeight];
-//😱
+// function draw() {
+//   if (!hasInitialized) return;
+//  // background(0);
+//   positions = tracker.getCurrentPosition();
+
+//    image(capture, 0, 0);
+
+//   if (!positions) return;
+
+//   // fill(0);
+//   // noStroke();
+//   // surprisedFace.noStroke();
+
+//   //drawNose();
+//   // drawLeftEye();
+//   // drawRightEye();
+//    drawMouth();
+
+//   //text("😱", 0, 0);
+// }
+
+// // function keyPressed() {
+// //   if (key === " ") {
+// //     clearNoseGraphic();
+// //   }
+// // }
+
+// // function clearNoseGraphic() {
+// //   noseDrawingLayer.clear();
+// // }
+
+// //text(str, x, y, [maxWidth], [maxHeight];
+// //😱
 
 
-function drawMouth() {
-  const topXPos = capture.width - positions[60][0];
-  const topYPos = positions[60][1];
+// function drawMouth() {
+//   const topXPos = capture.width - positions[60][0];
+//   const topYPos = positions[60][1];
 
-  const botXPos = capture.width - positions[57][0];
-  const botYPos = positions[57][1];
+//   const botXPos = capture.width - positions[57][0];
+//   const botYPos = positions[57][1];
 
-  const distance = dist(topXPos, topYPos, botXPos, botYPos);
+//   const distance = dist(topXPos, topYPos, botXPos, botYPos);
 
-  const mappedSize = map(distance, 0, 16, 5, 40, true);
+//   const mappedSize = map(distance, 0, 16, 5, 40, true);
 
-  console.log(floor(distance));
+//   console.log(floor(distance));
 
-  // if (distance >= 5){
-  //   textSize(300);
-  //   text("😱", botXPos, botYPos-10);
-  //  textAlign(CENTER, CENTER);
-  // }
+//   // if (distance >= 5){
+//   //   textSize(300);
+//   //   text("😱", botXPos, botYPos-10);
+//   //  textAlign(CENTER, CENTER);
+//   // }
 
-  //hat
-  if (distance >= 5){
-      textSize(200);
-      text("🎩", topXPos, topYPos-200);
-     textAlign(CENTER, CENTER);
-    }
+//   //hat
+//   if (distance >= 5){
+//       textSize(200);
+//       text("🎩", topXPos, topYPos-200);
+//      textAlign(CENTER, CENTER);
+//     }
 
-  //🎩
-}
+//   //🎩
+// }
 
 // function drawNose() {
 //   const xPos = capture.width - positions[62][0];
