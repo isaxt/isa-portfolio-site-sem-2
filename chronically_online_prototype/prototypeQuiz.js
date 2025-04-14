@@ -146,3 +146,13 @@ nextButton.addEventListener("click", () => {
 });
 
 showQuestion();
+
+// 4 html pages
+// local storage-- as opposed to a variable
+
+// one page-- each following page
+//
+// landing page
+// music that changes based on the state of the user
+// click on the meme-- more points 
+// end page
