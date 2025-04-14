@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>your final verdict</title>
+    <link rel="stylesheet" type="text/css" href="chronicallyOnline.css">
+</head>
+<body>
+
+    <img src="memeAssets/cat_meme.jpg" class="bg-img img1" alt="meme 1">
+    <img src="memeAssets/ethical_meme.jpg" class="bg-img img2" alt="meme 2">
+    <img src="memeAssets/frog_meme.jpg" class="bg-img img3" alt="meme 3">
+
+    <div class="container">
+        <h1>final verdict:</h1>
+        <p id="final-message"></p>
+        <a href="index.html"><button>retake quiz?</button></a>
+        <a href="surprise.html"><button>see a surprise</button></a>
+    </div>
+
+    <script>
+        const score = parseInt(localStorage.getItem("quiz_score")) || 0;
+
+        let message = "";
+        if (score <= 12) {
+            message = "you seem to have a balanced digital life. yippee!";
+        } else if (score <= 20) {
+            message = "you're a moderate user. consider more offline time.";
+        } else {
+            message = "you might be too attached to the digital world. touch some grass!";
+        }
+
+        document.getElementById("final-message").textContent = message;
+
+        // clears localStorage after showing result
+        localStorage.removeItem("quiz_score");
+        localStorage.removeItem("quiz_currentQuestionIndex");
+    </script>
+</body>
+</html>
