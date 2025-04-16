@@ -1,18 +1,20 @@
 # ARE YOU CHRONICALLY ONLINE???
 
-Welcome to **ARE YOU CHRONICALLY ONLINE???** — a slightly chaotic quiz inspired by the digital age, meme culture, and the rise of internet-induced existential crises.
+**ARE YOU CHRONICALLY ONLINE???** — a slightly chaotic quiz inspired by the digital age, meme culture, and the rise of internet-induced existential crises.
 
 ## 🌀 What Is This?
 
-This project was born from a realization I had growing up: the way we talk about technology usage has shifted drastically. I remember sitting in doctor’s offices as a kid, looking at posters that warned about "too much screen time." Over the years, those warnings changed — “only X hours with technology” turned into “only X hours, aside from homework…”
+I was originally inspired from a realization I had growing up: the way we talk about technology usage has shifted drastically. I remember sitting in doctor’s offices as a kid, looking at posters that warned about "too much screen time." Over the years, those warnings changed — “only X hours with technology” turned into “only X hours, aside from homework…”
 
-And now? We're always online. But when does being online turn into being **chronically online**?
+And now? We're always online (or at least I feel like I am). But when does being online turn into being **chronically online**?
 
-This project explores that question through a quiz — a playful, aesthetic deep dive into your online habits, internet addictions, and whether you've slowly morphed into a meme-fueled dopamine chaser.
+I want to explore this question through a quiz — a playful, aesthetic deep dive into your online habits, internet addictions, and whether you've slowly morphed into a meme-fueled dopamine chaser.
 
 ## 💻 What's Inside?
 
 A website and interactive quiz that captures the feeling of being lost in the scroll. 
+
+There is also a little surpise at the end of the quiz! (screenshots of my own messages where I admit I am chronically online)
 
 ## 🧠 Quiz Questions (A Sneak Peek)
 
@@ -27,17 +29,16 @@ A website and interactive quiz that captures the feeling of being lost in the sc
 
 ## 🎯 Goal
 
-To create a playful but thoughtful reflection on what it means to be *chronically online* — blending humor, internet culture, and self-awareness. This project is also an ongoing exploration of how our relationships with technology have evolved, and where we’re heading next.
+I wanted to create a playful but thoughtful reflection on what it means to be *chronically online* — blending humor, internet culture, and self-awareness. This project is also an ongoing exploration of how our relationships with technology have evolved, and where we’re heading next.
 
 ## 🛠️ Built With
 
 - HTML / CSS / JavaScript
-- Possibly a sprinkle of memes
-- ✨ VIBES ✨
+- memes
 
-## 🚧 In Progress
+## 🚧 Future Iteration (AKA if I had more time...)
 
-- [ ] Add visual/UX polish with memes
-- [ ] Do further research on internet usage trends
+- I want make the website *EVEN* more chaotic-- more memes and crazy visuals
+- My friends (during the prototype share out in class) had the cute idea to potentially have easter eggs where if the user presses the memes then it could also accumulate points that way
 
 

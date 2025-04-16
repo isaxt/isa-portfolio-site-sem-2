@@ -89,3 +89,39 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 500px;
 }
+
+.img4 {
+    top: 10%;
+    left: 60%;
+    transform: rotate(8deg);
+}
+
+.img5 {
+    top: 70%;
+    left: 10%;
+    transform: rotate(-12deg);
+}
+
+.img6 {
+    top: 30%;
+    right: 10%;
+    transform: rotate(6deg);
+}
+
+.img7 {
+    bottom: 10%;
+    right: 15%;
+    transform: rotate(-8deg);
+}
+
+.img8 {
+    top: 80px;
+    left: 45%;
+    transform: rotate(5deg);
+}
+
+.img9 {
+    top: 250px;
+    left: 5%;
+    transform: rotate(12deg);
+}

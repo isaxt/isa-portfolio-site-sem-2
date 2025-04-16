@@ -1,6 +1,6 @@
 # ARE YOU CHRONICALLY ONLINE???
 
-Welcome to **ARE YOU CHRONICALLY ONLINE???** — a slightly chaotic quiz inspired by the digital age, meme culture, and the rise of internet-induced existential crises.
+**ARE YOU CHRONICALLY ONLINE???** — a slightly chaotic quiz inspired by the digital age, meme culture, and the rise of internet-induced existential crises.
 
 ## 🌀 What Is This?
 
@@ -8,7 +8,7 @@ This project was born from a realization I had growing up: the way we talk about
 
 And now? We're always online. But when does being online turn into being **chronically online**?
 
-This project explores that question through a quiz — a playful, aesthetic deep dive into your online habits, internet addictions, and whether you've slowly morphed into a meme-fueled dopamine chaser.
+I want to explore this question through a quiz — a playful, aesthetic deep dive into your online habits, internet addictions, and whether you've slowly morphed into a meme-fueled dopamine chaser.
 
 ## 💻 What's Inside?
 
@@ -32,8 +32,7 @@ To create a playful but thoughtful reflection on what it means to be *chronicall
 ## 🛠️ Built With
 
 - HTML / CSS / JavaScript
-- Possibly a sprinkle of memes
-- ✨ VIBES ✨
+- memes
 
 ## 🚧 In Progress
 
