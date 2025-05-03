@@ -1,0 +1,11 @@
+.poem-asset {
+    width: 150px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+  }
+  
+  .poem-asset:hover {
+    border-color: #e461b8;
+  }
