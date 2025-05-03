@@ -1,11 +1,26 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-color: rgb(235, 211, 223); /* Light pink background */
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: rgb(76, 9, 9); /* Dark red header text */
+}
+
 .poem-asset {
-    width: 150px;
-    margin: 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: 0.3s;
-  }
-  
-  .poem-asset:hover {
-    border-color: #e461b8;
-  }
+  width: 150px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  position: absolute;
+}
+
+.poem-asset:hover {
+  border-color: #e461b8;
+}
