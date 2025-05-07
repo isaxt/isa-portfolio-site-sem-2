@@ -4,13 +4,13 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  background-color: rgb(235, 211, 223); /* Light pink background */
+  background-color: rgb(235, 211, 223); /* light pink background */
 }
 
 h1 {
   text-align: center;
   margin-top: 20px;
-  color: rgb(76, 9, 9); /* Dark red header text */
+  color: rgb(76, 9, 9); /* dark red header text */
 }
 
 .poem-asset {
